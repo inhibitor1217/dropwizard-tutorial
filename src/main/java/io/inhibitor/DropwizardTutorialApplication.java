@@ -4,6 +4,7 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.inhibitor.resources.HelloWorldResource;
+import io.inhibitor.services.TemplateHealthCheck;
 
 public class DropwizardTutorialApplication extends Application<DropwizardTutorialConfiguration> {
 
@@ -28,6 +29,9 @@ public class DropwizardTutorialApplication extends Application<DropwizardTutoria
         configuration.getDefaultName()
     );
 
+    final TemplateHealthCheck templateHealthCheck = new TemplateHealthCheck(configuration.getTemplate());
+
     environment.jersey().register(helloWorldResource);
+    environment.healthChecks().register("template", templateHealthCheck);
   }
 }
