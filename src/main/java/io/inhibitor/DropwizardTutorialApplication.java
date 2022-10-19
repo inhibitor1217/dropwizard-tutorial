@@ -25,8 +25,8 @@ public class DropwizardTutorialApplication extends Application<DropwizardTutoria
   @Override
   public void run(DropwizardTutorialConfiguration configuration, Environment environment) {
     final HelloWorldResource helloWorldResource = new HelloWorldResource(
-        configuration.getTemplate(),
-        configuration.getDefaultName()
+        configuration.getDefaultName(),
+        configuration.getTemplate()
     );
 
     final TemplateHealthCheck templateHealthCheck = new TemplateHealthCheck(configuration.getTemplate());
